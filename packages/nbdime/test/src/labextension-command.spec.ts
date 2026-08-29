@@ -50,8 +50,8 @@ describe('nbdime:diff command', () => {
       null,
     );
     await commands.execute(CommandIDs.diffNotebook, {
-      base: 'base.ipynb',
-      remote: 'remote.ipynb',
+      base: ' base.ipynb ',
+      remote: ' remote.ipynb ',
     });
 
     expect(diffNotebook).toHaveBeenCalledWith(

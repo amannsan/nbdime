@@ -208,8 +208,11 @@ function addCommands(
         name: 'base' | 'remote',
       ): Promise<string | null> {
         const value = args[name];
-        if (typeof value === 'string' && value.trim()) {
-          return value;
+        if (typeof value === 'string') {
+          const path = value.trim();
+          if (path) {
+            return path;
+          }
         }
 
         const label =
@@ -224,9 +227,8 @@ function addCommands(
           placeholder: trans.__('path/to/notebook.ipynb'),
           okLabel: trans.__('Compare'),
         });
-        return result.button.accept && result.value?.trim()
-          ? result.value
-          : null;
+        const path = result.value?.trim();
+        return result.button.accept && path ? path : null;
       }
 
       const base = await getNotebookPath('base');
