@@ -203,6 +203,31 @@ function addCommands(
   });
 
   commands.addCommand(CommandIDs.diffNotebook, {
+    describedBy: {
+      args: {
+        type: 'object',
+        properties: {
+          base: {
+            type: 'string',
+            description: trans.__(
+              'Path to the base notebook. If omitted, the command prompts for it.',
+            ),
+          },
+          remote: {
+            type: 'string',
+            description: trans.__(
+              'Path to the remote notebook. If omitted, the command prompts for it.',
+            ),
+          },
+          activate: {
+            type: 'boolean',
+            description: trans.__(
+              'Whether to activate the diff widget after opening it.',
+            ),
+          },
+        },
+      },
+    },
     execute: async args => {
       async function getNotebookPath(
         name: 'base' | 'remote',

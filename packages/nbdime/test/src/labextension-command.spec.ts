@@ -49,6 +49,18 @@ describe('nbdime:diff command', () => {
       editorServices,
       null,
     );
+
+    expect(await commands.describedBy(CommandIDs.diffNotebook)).toMatchObject({
+      args: {
+        type: 'object',
+        properties: {
+          base: { type: 'string', description: expect.any(String) },
+          remote: { type: 'string', description: expect.any(String) },
+          activate: { type: 'boolean', description: expect.any(String) },
+        },
+      },
+    });
+
     await commands.execute(CommandIDs.diffNotebook, {
       base: ' base.ipynb ',
       remote: ' remote.ipynb ',
